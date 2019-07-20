@@ -5,8 +5,30 @@ import {
 } from '../actions/index'
 
 const initialState = {
-  notes: [],
-  nextIndex: 0
+  notes: [
+    {
+      finished: true,
+      title: 'Brush teeth',
+      deadline: new Date(2019, 6, 12),
+      priority: 'MEDIUM',
+      index: 0
+    },
+    {
+      finished: false,
+      title: 'Take a shower',
+      deadline: new Date(2019, 6, 14),
+      priority: 'HIGH',
+      index: 1
+    },
+    {
+      finished: false,
+      title: 'Wake up',
+      deadline: new Date(2019, 6, 15),
+      priority: 'LOW',
+      index: 2
+    }
+  ],
+  nextIndex: 3
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -22,10 +44,11 @@ const rootReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       notes: state.notes.concat(action.payload)
     })
-    //TODO:
   case UPDATE_NOTE_AS_FINISHED:
     return Object.assign({}, state, {
-      notes: state.notes.concat(action.payload)
+      notes: state.notes.map(note =>
+        note.index === action.payload.index ? action.payload : note
+      )
     })
   default:
     return state

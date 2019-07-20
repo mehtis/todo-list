@@ -5,7 +5,7 @@ import Header from '../components/Header'
 
 const AddTodo = () => {
   return (
-    <div className="AddTodo">
+    <div className="addTodo">
       <Header title={'Add todo'}/>
     </div>
   )

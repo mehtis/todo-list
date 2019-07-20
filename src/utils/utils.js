@@ -1,0 +1,1 @@
+export const priorityMapping = ['HIGH', 'MEDIUM', 'LOW']
