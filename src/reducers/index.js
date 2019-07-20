@@ -14,6 +14,7 @@ const rootReducer = (state = initialState, action) => {
   case ADD_NOTE:
     return Object.assign({}, state, {
       notes: state.notes.concat(action.payload),
+      //TODO: Separate action
       nextIndex: state.nextIndex++
     })
     //TODO:
