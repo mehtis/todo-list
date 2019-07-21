@@ -13,11 +13,18 @@ const ListItem = props => {
         className={props.note.finished ? 'input-finished round': 'input-unfinished round'}
         onClick={() => props.markAsFinished(props.note)}
       />
-      <h3>{props.note.title}</h3>
-      <p>{props.note.deadline.toString()}</p>
+      <h3
+        className={props.note.finished ? 'text-finished': ''}
+      >{props.note.title}</h3>
+      <p
+        className={props.note.finished ? 'text-finished': ''}>
+        {props.note.deadline.toString()}
+      </p>
       <input
         type="button"
-        className="input-del"/>
+        className="input-del"
+        onClick={() => props.removeNote(props.note)}
+      />
     </div>
   )
 } 
@@ -30,7 +37,8 @@ ListItem.propTypes = {
     priority: PropTypes.oneOf(priorityMapping),
     index: PropTypes.number.isRequired,
   }).isRequired,
-  markAsFinished: PropTypes.func.isRequired
+  markAsFinished: PropTypes.func.isRequired,
+  removeNote: PropTypes.func.isRequired,
 }
 
 export default ListItem

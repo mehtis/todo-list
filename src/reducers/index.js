@@ -39,10 +39,9 @@ const rootReducer = (state = initialState, action) => {
       //TODO: Separate action
       nextIndex: state.nextIndex++
     })
-    //TODO:
   case REMOVE_NOTE:
     return Object.assign({}, state, {
-      notes: state.notes.concat(action.payload)
+      notes: state.notes.filter(note => note.index !== action.payload.index)
     })
   case UPDATE_NOTE:
     return Object.assign({}, state, {

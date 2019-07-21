@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { updateNote } from '../actions/index'
+import { updateNote, removeNote } from '../actions/index'
 import { priorityMapping } from '../utils/utils'
 import '../css/List.css'
 import Header from '../components/Header'
@@ -16,6 +16,8 @@ const List = props => {
     props.updateNote(note)
   }
 
+  const removeNote = note => props.removeNote(note)
+
   return (
     <div className="list">
       <Header title={'Todo-list'}/>
@@ -25,6 +27,7 @@ const List = props => {
             key={note.index}
             note={note}
             markAsFinished={markAsFinished}
+            removeNote={removeNote}
           />
         )}
       </div>
@@ -50,7 +53,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateNote: note => dispatch(updateNote(note))
+  updateNote: note => dispatch(updateNote(note)),
+  removeNote : note => dispatch(removeNote(note))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

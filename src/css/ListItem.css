@@ -26,3 +26,7 @@ input {
   background-size: 100%;
   background-color: white;
 }
+
+.text-finished {
+  text-decoration: line-through;
+}
