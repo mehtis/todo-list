@@ -1,3 +1,12 @@
 h1 {
+  top: calc(50% - 16px/2 - 280.5px);
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
   text-align: center;
+
+  color: #737373;
 }

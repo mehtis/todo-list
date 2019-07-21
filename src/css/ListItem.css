@@ -30,3 +30,29 @@ input {
 .text-finished {
   text-decoration: line-through;
 }
+
+h3 {
+  top: calc(50% - 17px/2 - 208px);
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration-line: line-through;
+
+  color: #050505;
+}
+
+p {
+  top: calc(50% - 16px/2 - 209.5px);
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: line-through;
+
+  color: #050505;
+}
