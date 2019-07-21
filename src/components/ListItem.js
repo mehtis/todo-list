@@ -6,6 +6,11 @@ import '../css/ListItem.css'
 import { priorityMapping } from '../utils/utils'
 
 const ListItem = props => {
+  const dateInFinnishFormat = date => String(
+    date.getDate()+ '.' +
+    (date.getMonth() + 1 ) + '.' +
+    date.getYear())
+
   return (
     <div className="div-list-item">
       <input
@@ -18,7 +23,7 @@ const ListItem = props => {
       >{props.note.title}</h3>
       <p
         className={props.note.finished ? 'text-finished': ''}>
-        {props.note.deadline.toString()}
+        {dateInFinnishFormat(props.note.deadline)}
       </p>
       <input
         type="button"
