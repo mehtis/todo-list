@@ -1,15 +1,9 @@
 export const ADD_NOTE = 'ADD_NOTE'
 export const REMOVE_NOTE = 'REMOVE_NOTE'
-export const UPDATE_NOTE_AS_FINISHED = 'UPDATE_NOTE_AS_FINISHED'
+export const UPDATE_NOTE = 'UPDATE_NOTE'
 
-export const addNote = payload => {
-  return { type: ADD_NOTE, payload }
-}
+export const addNote = payload => ({ type: ADD_NOTE, payload })
 
-export const removeNote = payload => {
-  return { type: REMOVE_NOTE, payload }
-}
+export const removeNote = payload => ({ type: REMOVE_NOTE, payload })
 
-export const updateNoteAsFinished = payload => {
-  return { type: UPDATE_NOTE_AS_FINISHED, payload }
-}
+export const updateNote = payload => ({ type: UPDATE_NOTE, payload })

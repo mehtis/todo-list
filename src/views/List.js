@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { addNote as updateNoteAsFinished } from '../actions/index'
+import { updateNote } from '../actions/index'
 import { priorityMapping } from '../utils/utils'
 import '../css/List.css'
 import Header from '../components/Header'
@@ -10,12 +10,22 @@ import ListItem from '../components/ListItem'
 
 
 const List = props => {
+
+  const markAsFinished = note => {
+    note.finished = !note.finished
+    props.updateNote(note)
+  }
+
   return (
     <div className="list">
       <Header title={'Todo-list'}/>
       <div className="list-items">
         {props.notes.map(note =>
-          <ListItem key={note.index} note={note} />
+          <ListItem
+            key={note.index}
+            note={note}
+            markAsFinished={markAsFinished}
+          />
         )}
       </div>
     </div>
@@ -30,9 +40,9 @@ List.propTypes = {
       deadline: PropTypes.instanceOf(Date),
       priority: PropTypes.oneOf(priorityMapping),
       index: PropTypes.number.isRequired,
-
     })
-  )
+  ),
+  updateNote: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -40,7 +50,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateNoteAsFinished: note => dispatch(updateNoteAsFinished(note))
+  updateNote: note => dispatch(updateNote(note))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

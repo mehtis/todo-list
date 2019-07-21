@@ -1,7 +1,7 @@
 import {
   ADD_NOTE,
   REMOVE_NOTE,
-  UPDATE_NOTE_AS_FINISHED
+  UPDATE_NOTE
 } from '../actions/index'
 
 const initialState = {
@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       notes: state.notes.concat(action.payload)
     })
-  case UPDATE_NOTE_AS_FINISHED:
+  case UPDATE_NOTE:
     return Object.assign({}, state, {
       notes: state.notes.map(note =>
         note.index === action.payload.index ? action.payload : note
