@@ -1,13 +1,14 @@
 import React from 'react'
 import { slide as HamburgerMenu } from 'react-burger-menu'
+import { Link } from 'react-router-dom'
 
 import '../css/Hamburger.css'
 
 const Hamburger = props => {
   return (
     <HamburgerMenu {...props} >
-      <a id="list" className="hamburger-item" href="/">Todo-list</a>
-      <a id="add" className="hamburger-item" href="/add">Add todo</a>
+      <Link to="/">Todo-list</Link>
+      <Link to="/add">Add todo</Link>
     </HamburgerMenu>
   )
 }
