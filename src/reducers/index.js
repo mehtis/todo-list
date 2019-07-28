@@ -31,14 +31,19 @@ const initialState = {
     }
   ],
   nextIndex: 3,
-  errors: []
+  errors: [
+    {
+      message: 'Error!',
+      source: 'TEST_ERROR'
+    }
+  ]
 }
 
 const rootReducer = (state = initialState, action) => {
   switch(action.type) {
   case ADD_NOTE:
     return Object.assign({}, state, {
-      notes: state.notes.concat({...action.payload, index: state.nextIndex}),
+      notes: state.notes.concat({...action.payload, index: state.nextIndex, finished: false}),
       //TODO: Separate action
       nextIndex: state.nextIndex++
     })
@@ -54,11 +59,11 @@ const rootReducer = (state = initialState, action) => {
     })
   case ADD_ERROR:
     return Object.assign({}, state, {
-      errors: state.errors.concat(...action.payload)
+      errors: [...state.errors, {...action.payload}]
     })
   case CLEAR_ERRORS:
     return Object.assign({}, state, {
-      errors: state.errors.filter(error => error.payload.source !== action.payload.source)
+      errors: state.errors.filter(error => error.source !== action.payload.source)
     })
   default:
     return state

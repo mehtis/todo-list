@@ -26,29 +26,32 @@ class AddTodo extends React.Component {
   onSubmit = e => {
     e.preventDefault()
     let errors = false
-    clearErrors({ source: errorSource})
-    const deadline = moment(this.state.deadline, 'DD.MM.YYYY')
-    if (!deadline.isValid) {
-      errors = true
-      addError({
-        message: 'Wrong date format for deadline. Use DD.MM.YYYY',
-        source: errorSource
-      })
-    }
+    this.props.clearErrors({ source: errorSource})
+
     if (!this.state.title) {
       errors = true
-      addError({
+      this.props.addError({
         message: 'Title required',
         source: errorSource
       })
     }
+
+    const deadline = moment(this.state.deadline, 'DD.MM.YYYY')
+    if (!deadline.isValid()) {
+      errors = true
+      this.props.addError({
+        message: 'Wrong date format for deadline. Use DD.MM.YYYY',
+        source: errorSource
+      })
+    }
+
     if (!errors) {
       const note = {
         title: this.state.title,
         deadline: this.state.deadline,
         priority: this.state.priority
       }
-      addNote(note)
+      this.props.addNote(note)
       this.setState({
         submitted: true
       })
@@ -119,8 +122,8 @@ class AddTodo extends React.Component {
           />
           <button type="submit">Add</button>
           {this.props.errors && this.props.errors.map(error =>
-            <div className="div-error">
-              error.message
+            <div key={error.message} className="div-error">
+              {error.message}
             </div>
           )}
           {this.state.submitted &&
@@ -141,7 +144,10 @@ AddTodo.propTypes = {
       message: PropTypes.string.isRequired,
       source: PropTypes.string
     })
-  )
+  ),
+  addNote: PropTypes.func.isRequired,
+  addError: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
