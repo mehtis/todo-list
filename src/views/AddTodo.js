@@ -2,6 +2,7 @@ import React from 'react'
 
 import Hamburger from '../components/Hamburger'
 import RadioButtonGroup from '../components/RadioButtonGroup'
+import TextInput from '../components/TextInput'
 
 import '../css/AddTodo.css'
 
@@ -17,6 +18,18 @@ class AddTodo extends React.Component {
   }
   onSubmit = e => {
     e.preventDefault()
+  }
+
+  onTitleChange = e => {
+    this.setState({
+      title: e.target.value
+    })
+  }
+
+  onDeadlineChange = e => {
+    this.setState({
+      deadline: e.target.value
+    })
   }
 
   onRadioChange = e => {
@@ -48,22 +61,20 @@ class AddTodo extends React.Component {
         <Hamburger right noOverlay />
         <h1>Add todo</h1>
         <div className="div-add-items">
-          <div className="div-input-line">
-            <h2>Title</h2>
-            <input
-              type="text"
-              name="title"
-              placeholder="Write title"
-            />
-          </div>
-          <div className="div-input-line">
-            <h2>Deadline</h2>
-            <input
-              type="text"
-              name="Deadline"
-              placeholder="19.7.2019"
-            />
-          </div>
+          <TextInput
+            title="Title"
+            name="title"
+            value={this.state.title}
+            placeholder="Write title"
+            onChange={this.onTitleChange}
+          />
+          <TextInput
+            title="Deadline"
+            name="deadline"
+            value={this.state.deadline}
+            placeholder="19.7.2019"
+            onChange={this.onDeadlineChange}
+          />
           <RadioButtonGroup
             title="Priority"
             name="priority"
