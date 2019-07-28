@@ -13,14 +13,18 @@ import '../css/AddTodo.css'
 
 const errorSource = 'ADD_TODO_ERROR'
 
+const initialState = {
+  title: '',
+  deadline: '',
+  priority: 'LOW',
+  submitted: false
+}
+
 class AddTodo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      deadline: '',
-      priority: 'LOW',
-      submitted: false
+      ...initialState
     }
   }
   onSubmit = e => {
@@ -76,6 +80,12 @@ class AddTodo extends React.Component {
     })
   }
 
+  clearInputs = () => {
+    this.setState({
+      ...initialState
+    })
+  }
+
   render() {
     //TODO: From priorityMappings
     const radioValues = [
@@ -121,7 +131,7 @@ class AddTodo extends React.Component {
               onChange={this.onRadioChange}
               values={radioValues}
             />
-            <button type="submit">Add</button>
+            <button type="submit" disabled={this.state.submitted}>Add</button>
             {this.props.errors && this.props.errors.map(error =>
               <div key={error.message} className="div-error">
                 {error.message}
@@ -129,7 +139,12 @@ class AddTodo extends React.Component {
             )}
             {this.state.submitted &&
               <div className="div-submitted">
+                <div>
                 Note added!
+                </div>
+                <button onClick={this.clearInputs}>
+                  Close
+                </button>
               </div>
             }
           </div>
