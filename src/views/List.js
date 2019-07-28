@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateNote: note => dispatch(updateNote(note)),
-  removeNote : note => dispatch(removeNote(note))
+  removeNote: note => dispatch(removeNote(note))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

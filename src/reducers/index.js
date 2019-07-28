@@ -1,7 +1,9 @@
 import {
   ADD_NOTE,
   REMOVE_NOTE,
-  UPDATE_NOTE
+  UPDATE_NOTE,
+  ADD_ERROR,
+  CLEAR_ERRORS
 } from '../actions/index'
 
 const initialState = {
@@ -28,14 +30,15 @@ const initialState = {
       index: 2
     }
   ],
-  nextIndex: 3
+  nextIndex: 3,
+  errors: []
 }
 
 const rootReducer = (state = initialState, action) => {
   switch(action.type) {
   case ADD_NOTE:
     return Object.assign({}, state, {
-      notes: state.notes.concat(action.payload),
+      notes: state.notes.concat({...action.payload, index: state.nextIndex}),
       //TODO: Separate action
       nextIndex: state.nextIndex++
     })
@@ -48,6 +51,14 @@ const rootReducer = (state = initialState, action) => {
       notes: state.notes.map(note =>
         note.index === action.payload.index ? action.payload : note
       )
+    })
+  case ADD_ERROR:
+    return Object.assign({}, state, {
+      errors: state.errors.concat(...action.payload)
+    })
+  case CLEAR_ERRORS:
+    return Object.assign({}, state, {
+      errors: state.errors.filter(error => error.payload.source !== action.payload.source)
     })
   default:
     return state

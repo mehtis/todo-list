@@ -1,4 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import moment from 'moment'
+
+import { addNote, addError, clearErrors } from '../actions/index'
 
 import Hamburger from '../components/Hamburger'
 import RadioButtonGroup from '../components/RadioButtonGroup'
@@ -6,18 +11,48 @@ import TextInput from '../components/TextInput'
 
 import '../css/AddTodo.css'
 
+const errorSource = 'ADD_TODO_ERROR'
+
 class AddTodo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       title: '',
       deadline: '',
-      priority: 'LOW'
-
+      priority: 'LOW',
+      submitted: false
     }
   }
   onSubmit = e => {
     e.preventDefault()
+    let errors = false
+    clearErrors({ source: errorSource})
+    const deadline = moment(this.state.deadline, 'DD.MM.YYYY')
+    if (!deadline.isValid) {
+      errors = true
+      addError({
+        message: 'Wrong date format for deadline. Use DD.MM.YYYY',
+        source: errorSource
+      })
+    }
+    if (!this.state.title) {
+      errors = true
+      addError({
+        message: 'Title required',
+        source: errorSource
+      })
+    }
+    if (!errors) {
+      const note = {
+        title: this.state.title,
+        deadline: this.state.deadline,
+        priority: this.state.priority
+      }
+      addNote(note)
+      this.setState({
+        submitted: true
+      })
+    }
   }
 
   onTitleChange = e => {
@@ -39,6 +74,7 @@ class AddTodo extends React.Component {
   }
 
   render() {
+    //TODO: From priorityMappings
     const radioValues = [
       {
         value: 'LOW',
@@ -82,6 +118,16 @@ class AddTodo extends React.Component {
             values={radioValues}
           />
           <button type="submit">Add</button>
+          {this.props.errors && this.props.errors.map(error =>
+            <div className="div-error">
+              error.message
+            </div>
+          )}
+          {this.state.submitted &&
+            <div className="div-submitted">
+              Note added!
+            </div>
+          }
         </div>
 
       </form>
@@ -89,4 +135,23 @@ class AddTodo extends React.Component {
   }
 }
 
-export default AddTodo
+AddTodo.propTypes = {
+  errors: PropTypes.arrayOf(
+    PropTypes.shape({
+      message: PropTypes.string.isRequired,
+      source: PropTypes.string
+    })
+  )
+}
+
+const mapStateToProps = state => ({
+  errors: state.errors.filter(error => error.source === 'ADD_TODO_ERROR')
+})
+
+const mapDispatchToProps = dispatch => ({
+  addNote: note => dispatch(addNote(note)),
+  addError: error => dispatch(addError(error)),
+  clearErrors: source => dispatch(clearErrors(source))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo)
