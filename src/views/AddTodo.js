@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-import { addNote, addError, clearErrors } from '../actions/index'
+import { addNote, addError, clearErrors } from '../actions/'
 
 import Hamburger from '../components/Hamburger'
 import RadioButtonGroup from '../components/RadioButtonGroup'

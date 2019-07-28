@@ -1,10 +1,11 @@
+import uuid from 'uuid/v4'
 import {
   ADD_NOTE,
   REMOVE_NOTE,
   UPDATE_NOTE,
   ADD_ERROR,
   CLEAR_ERRORS
-} from '../actions/index'
+} from '../actions'
 
 const initialState = {
   notes: [
@@ -13,24 +14,23 @@ const initialState = {
       title: 'Brush teeth',
       deadline: new Date(2019, 6, 12),
       priority: 'MEDIUM',
-      index: 0
+      id: uuid()
     },
     {
       finished: false,
       title: 'Take a shower',
       deadline: new Date(2019, 6, 14),
       priority: 'HIGH',
-      index: 1
+      id: uuid()
     },
     {
       finished: false,
       title: 'Wake up',
       deadline: new Date(2019, 6, 15),
       priority: 'LOW',
-      index: 2
+      id: uuid()
     }
   ],
-  nextIndex: 3,
   errors: [
     {
       message: 'Error!',
@@ -43,18 +43,16 @@ const rootReducer = (state = initialState, action) => {
   switch(action.type) {
   case ADD_NOTE:
     return Object.assign({}, state, {
-      notes: state.notes.concat({...action.payload, index: state.nextIndex, finished: false}),
-      //TODO: Separate action
-      nextIndex: state.nextIndex++
+      notes: state.notes.concat({...action.payload, id: uuid(), finished: false})
     })
   case REMOVE_NOTE:
     return Object.assign({}, state, {
-      notes: state.notes.filter(note => note.index !== action.payload.index)
+      notes: state.notes.filter(note => note.id !== action.payload.id)
     })
   case UPDATE_NOTE:
     return Object.assign({}, state, {
       notes: state.notes.map(note =>
-        note.index === action.payload.index ? action.payload : note
+        note.id === action.payload.id ? action.payload : note
       )
     })
   case ADD_ERROR:

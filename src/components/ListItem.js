@@ -40,7 +40,7 @@ ListItem.propTypes = {
     title: PropTypes.string,
     deadline: PropTypes.instanceOf(Date),
     priority: PropTypes.oneOf(priorityMapping),
-    index: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   markAsFinished: PropTypes.func.isRequired,
   removeNote: PropTypes.func.isRequired,

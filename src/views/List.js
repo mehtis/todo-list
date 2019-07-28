@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { updateNote, removeNote } from '../actions/index'
+import { updateNote, removeNote } from '../actions/'
 import { priorityMapping } from '../utils/utils'
 
 import Hamburger from '../components/Hamburger'
@@ -27,7 +27,7 @@ const List = props => {
       <div className="list-items">
         {props.notes.map(note =>
           <ListItem
-            key={note.index}
+            key={note.id}
             note={note}
             markAsFinished={markAsFinished}
             removeNote={removeNote}
@@ -45,7 +45,7 @@ List.propTypes = {
       title: PropTypes.string,
       deadline: PropTypes.instanceOf(Date),
       priority: PropTypes.oneOf(priorityMapping),
-      index: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
     })
   ),
   updateNote: PropTypes.func.isRequired
