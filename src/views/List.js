@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 
 import { updateNote, removeNote } from '../actions/index'
 import { priorityMapping } from '../utils/utils'
-import '../css/List.css'
-import Header from '../components/Header'
+
+import Hamburger from '../components/Hamburger'
 import ListItem from '../components/ListItem'
+
+import '../css/List.css'
 
 
 const List = props => {
@@ -20,7 +22,8 @@ const List = props => {
 
   return (
     <div className="list">
-      <Header title={'Todo-list'}/>
+      <Hamburger right noOverlay />
+      <h1>Todo-list</h1>
       <div className="list-items">
         {props.notes.map(note =>
           <ListItem

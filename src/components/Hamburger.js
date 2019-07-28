@@ -5,7 +5,7 @@ import '../css/Hamburger.css'
 
 const Hamburger = props => {
   return (
-    <HamburgerMenu right noOverlay >
+    <HamburgerMenu {...props} >
       <a id="list" className="hamburger-item" href="/">Todo-list</a>
       <a id="add" className="hamburger-item" href="/add">Add todo</a>
     </HamburgerMenu>

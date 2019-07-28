@@ -1,12 +1,14 @@
 import React from 'react'
 
+import Hamburger from '../components/Hamburger'
+
 import '../css/AddTodo.css'
-import Header from '../components/Header'
 
 const AddTodo = () => {
   return (
     <div className="addTodo">
-      <Header title={'Add todo'}/>
+      <Hamburger right noOverlay />
+      <h1>Add todo</h1>
     </div>
   )
 }
