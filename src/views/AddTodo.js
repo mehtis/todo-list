@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -48,7 +48,7 @@ class AddTodo extends React.Component {
     if (!errors) {
       const note = {
         title: this.state.title,
-        deadline: this.state.deadline,
+        deadline: deadline.toDate(),
         priority: this.state.priority
       }
       this.props.addNote(note)
@@ -96,44 +96,45 @@ class AddTodo extends React.Component {
       }
     ]
     return (
-      <form onSubmit={this.onSubmit}>
+      <Fragment>
         <Hamburger right noOverlay />
-        <h1>Add todo</h1>
-        <div className="div-add-items">
-          <TextInput
-            title="Title"
-            name="title"
-            value={this.state.title}
-            placeholder="Write title"
-            onChange={this.onTitleChange}
-          />
-          <TextInput
-            title="Deadline"
-            name="deadline"
-            value={this.state.deadline}
-            placeholder="19.7.2019"
-            onChange={this.onDeadlineChange}
-          />
-          <RadioButtonGroup
-            title="Priority"
-            name="priority"
-            onChange={this.onRadioChange}
-            values={radioValues}
-          />
-          <button type="submit">Add</button>
-          {this.props.errors && this.props.errors.map(error =>
-            <div key={error.message} className="div-error">
-              {error.message}
-            </div>
-          )}
-          {this.state.submitted &&
-            <div className="div-submitted">
-              Note added!
-            </div>
-          }
-        </div>
-
-      </form>
+        <form onSubmit={this.onSubmit}>
+          <h1>Add todo</h1>
+          <div className="div-add-items">
+            <TextInput
+              title="Title"
+              name="title"
+              value={this.state.title}
+              placeholder="Write title"
+              onChange={this.onTitleChange}
+            />
+            <TextInput
+              title="Deadline"
+              name="deadline"
+              value={this.state.deadline}
+              placeholder="19.7.2019"
+              onChange={this.onDeadlineChange}
+            />
+            <RadioButtonGroup
+              title="Priority"
+              name="priority"
+              onChange={this.onRadioChange}
+              values={radioValues}
+            />
+            <button type="submit">Add</button>
+            {this.props.errors && this.props.errors.map(error =>
+              <div key={error.message} className="div-error">
+                {error.message}
+              </div>
+            )}
+            {this.state.submitted &&
+              <div className="div-submitted">
+                Note added!
+              </div>
+            }
+          </div>
+        </form>
+      </Fragment>
     )
   }
 }
