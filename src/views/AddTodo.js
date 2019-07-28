@@ -29,15 +29,18 @@ class AddTodo extends React.Component {
     const radioValues = [
       {
         value: 'LOW',
-        checked: this.state.priority === 'LOW'
+        checked: this.state.priority === 'LOW',
+        label: 'Low'
       },
       {
         value: 'MEDIUM',
-        checked: this.state.priority === 'MEDIUM'
+        checked: this.state.priority === 'MEDIUM',
+        label: 'Medium'
       },
       {
         value: 'HIGH',
-        checked: this.state.priority === 'HIGH'
+        checked: this.state.priority === 'HIGH',
+        label: 'High'
       }
     ]
     return (

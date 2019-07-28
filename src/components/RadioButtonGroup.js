@@ -1,20 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import '../css/RadioButtonGroup.css'
+
 const RadioButtonGroup = props => {
   return (
     <div className="div-radiobuttons">
       <h2>{props.title}</h2>
       {props.values.map(radio =>
-        <input
-          key={radio.value}
-          type="radio"
-          className={`radio radio-${radio.value}`}
-          name={props.name}
-          value={radio.value}
-          checked={radio.checked}
-          onChange={props.onChange}
-        />
+        <div className="div-radiobutton">
+          <label className={`label-radio label-radio-${radio.label}`}>
+            <input
+              key={radio.value}
+              type="radio"
+              className="radio"
+              name={props.name}
+              value={radio.value}
+              checked={radio.checked}
+              onChange={props.onChange}
+            />
+            {radio.label}
+          </label>
+        </div>
       )}
     </div>
   )
@@ -25,7 +32,8 @@ RadioButtonGroup.propTypes = {
   values: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
-      checked: PropTypes.bool
+      checked: PropTypes.bool,
+      label: PropTypes.string.isRequired
     })
   ),
   onChange: PropTypes.func.isRequired
