@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -23,7 +23,7 @@ const Button = styled.button`
   background: #4089DE;
   width: 179px;
   height: 42px;
-  margin-top: 60px;
+  margin-top: 20px;
   color: #FFFFFF;
 `
 
@@ -63,6 +63,7 @@ class AddTodo extends React.Component {
         deadline: deadline.toDate(),
         priority: this.state.priority
       }
+      //TODO: Clear values instead of creating a new button?
       this.props.addNote(note)
       this.setState({
         submitted: true

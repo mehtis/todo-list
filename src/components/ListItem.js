@@ -77,6 +77,7 @@ const ListItem = props => {
     (date.getMonth() + 1 ) + '.' +
     date.getYear())
 
+  //TODO: General Header element
   return (
     <Wrapper priority={props.note.priority}className="div-list-item">
       <FinishedButton
