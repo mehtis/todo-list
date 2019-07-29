@@ -9,6 +9,23 @@ import DelImg from '../res/del.png'
 //TODO: Dynamic css with styled components
 import '../css/ListItem.css'
 
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.0416667);
+  margin: 10px;
+  border-left: 16px solid ${({priority}) => {
+    if (priority === 'LOW') {
+      return '#DBCC10'
+    } else if (priority === 'MEDIUM') {
+      return '#F5A623'
+    }
+    return '#D0021B'}};
+`
+
 const Input = styled.input`
   border: none;
   height: 25px;
@@ -17,6 +34,7 @@ const Input = styled.input`
 
 const FinishedButton = styled(Input)`
   border-radius: 50%;
+  margin: 5px;
 `
 
 const DeleteButton = styled(Input)`
@@ -24,6 +42,9 @@ const DeleteButton = styled(Input)`
   background-repeat: no-repeat;
   background-size: 100%;
   background-color: white;
+  width: 19px;
+  height: 19px;
+  margin: 5px;
 `
 
 const Header = styled.h3`
@@ -50,11 +71,6 @@ const Paragraph = styled.p`
   color: #050505;
 `
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-
 const ListItem = props => {
   const dateInFinnishFormat = date => String(
     date.getDate()+ '.' +
@@ -62,7 +78,7 @@ const ListItem = props => {
     date.getYear())
 
   return (
-    <Wrapper className="div-list-item">
+    <Wrapper priority={props.note.priority}className="div-list-item">
       <FinishedButton
         type="button"
         className={props.note.finished ? 'input-finished': ''}

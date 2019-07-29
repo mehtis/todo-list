@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../css/Hamburger.css'
 
+//TODO: Switch Hamburger?
 const Hamburger = props => {
   return (
     <HamburgerMenu {...props} >

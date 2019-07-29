@@ -2,15 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+const Header = styled.h2`
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #050505;
+`
 
 const Input = styled.input`
-  width: 100px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #979797;
+  opacity: 0.55;
 `
+
 
 const TextInput = props => {
   return (
     <div className="div-input-line">
-      <h2>{props.title}</h2>
+      <Header>{props.title}</Header>
       <Input
         type="text"
         className="input-text"

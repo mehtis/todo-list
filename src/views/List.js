@@ -1,12 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import { updateNote, removeNote } from '../actions/'
 import { priorityMapping } from '../utils/utils'
 
-import Hamburger from '../components/Hamburger'
 import ListItem from '../components/ListItem'
+
+const PageWrapper = styled.div`
+  width: 375px;
+  height: 667px;
+  background: #FFFFFF;
+`
+
+const ListWrapper = styled.div`
+  align-items: center;
+`
 
 const List = props => {
 
@@ -18,10 +28,9 @@ const List = props => {
   const removeNote = note => props.removeNote(note)
 
   return (
-    <div className="list">
-      <Hamburger right noOverlay />
+    <PageWrapper className="list">
       <h1>Todo-list</h1>
-      <div className="list-items">
+      <ListWrapper>
         {props.notes.map(note =>
           <ListItem
             key={note.id}
@@ -30,8 +39,8 @@ const List = props => {
             removeNote={removeNote}
           />
         )}
-      </div>
-    </div>
+      </ListWrapper>
+    </PageWrapper>
   )
 }
 
