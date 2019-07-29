@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import '../css/TextInput.css'
+
+const Input = styled.input`
+  width: 100px;
+`
 
 const TextInput = props => {
   return (
     <div className="div-input-line">
       <h2>{props.title}</h2>
-      <input
+      <Input
         type="text"
         className="input-text"
         name={props.name}

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import '../css/RadioButtonGroup.css'
-
 const RadioButtonGroup = props => {
   return (
     <div className="div-radiobuttons">

@@ -8,9 +8,6 @@ import { priorityMapping } from '../utils/utils'
 import Hamburger from '../components/Hamburger'
 import ListItem from '../components/ListItem'
 
-import '../css/List.css'
-
-
 const List = props => {
 
   const markAsFinished = note => {

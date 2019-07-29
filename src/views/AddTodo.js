@@ -9,8 +9,6 @@ import Hamburger from '../components/Hamburger'
 import RadioButtonGroup from '../components/RadioButtonGroup'
 import TextInput from '../components/TextInput'
 
-import '../css/AddTodo.css'
-
 const errorSource = 'ADD_TODO_ERROR'
 
 const initialState = {
