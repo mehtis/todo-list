@@ -8,6 +8,7 @@ import { addNote, addError, clearErrors } from '../actions/'
 
 import RadioButtonGroup from '../components/RadioButtonGroup'
 import TextInput from '../components/TextInput'
+import Notification from '../components/Notification'
 
 const errorSource = 'ADD_TODO_ERROR'
 
@@ -66,6 +67,7 @@ class AddTodo extends React.Component {
       //TODO: Clear values instead of creating a new button?
       this.props.addNote(note)
       this.setState({
+        ...initialState,
         submitted: true
       })
     }
@@ -138,21 +140,14 @@ class AddTodo extends React.Component {
             onChange={this.onRadioChange}
             values={radioValues}
           />
-          <Button type="submit" disabled={this.state.submitted}>Add</Button>
+          <Button type="submit" >Add</Button>
           {this.props.errors && this.props.errors.map(error =>
             <div key={error.message} className="div-error">
               {error.message}
             </div>
           )}
           {this.state.submitted &&
-            <div className="div-submitted">
-              <div>
-              Note added!
-              </div>
-              <Button onClick={this.clearInputs}>
-                Close
-              </Button>
-            </div>
+            <Notification message="Note added" />
           }
         </div>
       </form>
