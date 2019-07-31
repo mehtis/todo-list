@@ -9,7 +9,7 @@ import AddTodo from './views/AddTodo'
 
 const PageWrapper = styled.div`
   width: 375px;
-  height: 667px;
+  min-height: 400px;
   background: #FFFFFF;
   margin: 20px;
 `

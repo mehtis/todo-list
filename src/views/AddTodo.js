@@ -20,8 +20,6 @@ const initialState = {
 }
 
 const PageWrapper = styled.div`
-  width: 375px;
-  height: 667px;
   padding-top: 20px;
 `
 
@@ -74,7 +72,6 @@ class AddTodo extends React.Component {
         deadline: deadline.toDate(),
         priority: this.state.priority
       }
-      //TODO: Clear values instead of creating a new button?
       this.props.addNote(note)
       this.setState({
         ...initialState,

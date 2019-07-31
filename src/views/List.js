@@ -9,8 +9,6 @@ import { priorityMapping } from '../utils/utils'
 import ListItem from '../components/ListItem'
 
 const PageWrapper = styled.div`
-  width: 375px;
-  height: 667px;
   padding-top: 20px;
 `
 
