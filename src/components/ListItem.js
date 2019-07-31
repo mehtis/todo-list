@@ -11,12 +11,15 @@ import '../css/ListItem.css'
 
 
 const Wrapper = styled.div`
-  display: flex;
+  display: inline-flex;
+  justify-content: space-between;
+  width: calc(100% - 30px);
   align-items: center;
   text-align: center;
   background: #FFFFFF;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.0416667);
-  margin: 10px;
+  margin: 9px;
+  min-height: 50px;
   border-left: 16px solid ${({priority}) => {
     if (priority === 'LOW') {
       return '#DBCC10'
@@ -28,13 +31,16 @@ const Wrapper = styled.div`
 
 const Input = styled.input`
   border: none;
-  height: 25px;
-  width: 25px;
+  height: 19px;
+  width: 19px;
 `
 
 const FinishedButton = styled(Input)`
   border-radius: 50%;
   margin: 5px;
+  margin-left: 30px;
+  color: white;
+  float: left;
 `
 
 const DeleteButton = styled(Input)`
@@ -42,9 +48,9 @@ const DeleteButton = styled(Input)`
   background-repeat: no-repeat;
   background-size: 100%;
   background-color: white;
-  width: 19px;
-  height: 19px;
   margin: 5px;
+  position: relative;
+  right: 0px;
 `
 
 const Header = styled.h3`
@@ -59,14 +65,14 @@ const Header = styled.h3`
   color: #050505;
 `
 
-const Paragraph = styled.p`
-  top: calc(50% - 16px/2 - 209.5px);
-
+const Date = styled.p`
   font-family: Raleway;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  margin-left: 15px;
+  margin-right: 8px;
 
   color: #050505;
 `
@@ -77,7 +83,6 @@ const ListItem = props => {
     (date.getMonth() + 1 ) + '.' +
     date.getYear())
 
-  //TODO: General Header element
   return (
     <Wrapper priority={props.note.priority}className="div-list-item">
       <FinishedButton
@@ -90,10 +95,10 @@ const ListItem = props => {
       >
         {props.note.title}
       </Header>
-      <Paragraph
+      <Date
         className={props.note.finished ? 'text-finished': ''}>
         {dateInFinnishFormat(props.note.deadline)}
-      </Paragraph>
+      </Date>
       <DeleteButton
         type="button"
         className="input-del"

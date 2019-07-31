@@ -11,7 +11,7 @@ import ListItem from '../components/ListItem'
 const PageWrapper = styled.div`
   width: 375px;
   height: 667px;
-  background: #FFFFFF;
+  padding-top: 20px;
 `
 
 const ListWrapper = styled.div`
@@ -27,6 +27,7 @@ const List = props => {
 
   const removeNote = note => props.removeNote(note)
 
+  //TODO: Generic PageWrapper
   return (
     <PageWrapper className="list">
       <h1>Todo-list</h1>

@@ -4,7 +4,7 @@
     width: 18px;
     height: 15px;
     left: 33px;
-    top: 28px;
+    top: 30px;
   }
   
   /* Color/shape of burger icon bars */
@@ -41,7 +41,7 @@
   /* General sidebar styles */
   .bm-menu {
     /*TODO: Better color */
-    background: #EBDC23;;
+    background: #F5A623;;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }

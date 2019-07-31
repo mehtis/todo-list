@@ -19,6 +19,15 @@ const initialState = {
   submitted: false
 }
 
+const PageWrapper = styled.div`
+  width: 375px;
+  height: 667px;
+  padding-top: 20px;
+`
+
+const Wrapper = styled.div`
+  margin: 30px;
+`
 
 const Button = styled.button`
   background: #4089DE;
@@ -118,40 +127,44 @@ class AddTodo extends React.Component {
       }
     ]
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Add todo</h1>
-        <div>
-          <TextInput
-            title="Title"
-            name="title"
-            value={this.state.title}
-            placeholder="Write title"
-            onChange={this.onTitleChange}
-          />
-          <TextInput
-            title="Deadline"
-            name="deadline"
-            value={this.state.deadline}
-            placeholder="19.7.2019"
-            onChange={this.onDeadlineChange}
-          />
-          <RadioButtonGroup
-            title="Priority"
-            name="priority"
-            onChange={this.onRadioChange}
-            values={radioValues}
-          />
-          <Button type="submit" >Add</Button>
-          {this.props.errors && this.props.errors.map(error =>
-            <div key={error.message} className="div-error">
-              {error.message}
-            </div>
-          )}
-          {this.state.submitted &&
-            <Notification message="Note added" />
-          }
-        </div>
-      </form>
+      <PageWrapper>
+        <form onSubmit={this.onSubmit}>
+          <h1>Add todo</h1>
+          <Wrapper>
+            <TextInput
+              title="Title"
+              name="title"
+              value={this.state.title}
+              placeholder="Write title"
+              onChange={this.onTitleChange}
+            />
+            <TextInput
+              title="Deadline"
+              name="deadline"
+              value={this.state.deadline}
+              placeholder="19.7.2019"
+              onChange={this.onDeadlineChange}
+            />
+            <RadioButtonGroup
+              title="Priority"
+              name="priority"
+              onChange={this.onRadioChange}
+              values={radioValues}
+            />
+            <Button type="submit" >Add</Button>
+            { //TODO: Styling for errors
+              this.props.errors && this.props.errors.map(error =>
+                <div key={error.message} className="div-error">
+                  {error.message}
+                </div>
+              )
+            }
+            {this.state.submitted &&
+              <Notification message="Note added" />
+            }
+          </Wrapper>
+        </form>
+      </PageWrapper>
     )
   }
 }

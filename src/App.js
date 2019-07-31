@@ -11,7 +11,6 @@ const PageWrapper = styled.div`
   width: 375px;
   height: 667px;
   background: #FFFFFF;
-  padding: 15px;
   margin: 20px;
 `
 

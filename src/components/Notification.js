@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  background: green;
+  background: #4E8D7F;
   width: 80%;
   padding: 5px;
   margin-top: 15px;

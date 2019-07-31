@@ -12,7 +12,7 @@ const Header = styled.h2`
 `
 
 const Input = styled.input`
-  width: 200px;
+  width: 90%;
   border: none;
   border-bottom: 1px solid #979797;
   opacity: 0.55;
