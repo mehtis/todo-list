@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../css/Hamburger.css'
 
-//TODO: Doesn't close when clicked outside
+//TODO: Doesn't close when clicked on anything except cross
 const Hamburger = props => {
   return (
     <HamburgerMenu {...props} >
