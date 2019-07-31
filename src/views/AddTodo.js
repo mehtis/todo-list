@@ -40,6 +40,7 @@ class AddTodo extends React.Component {
     e.preventDefault()
     let errors = false
     this.props.clearErrors({ source: errorSource})
+    this.setState({submitted: false})
 
     if (!this.state.title) {
       errors = true
