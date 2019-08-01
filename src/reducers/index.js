@@ -7,6 +7,7 @@ import {
   CLEAR_ERRORS
 } from '../actions'
 
+// Test data for demonstration purposes
 const initialState = {
   notes: [
     {
