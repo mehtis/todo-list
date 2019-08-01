@@ -13,7 +13,7 @@ const defaultProps = {
     }],
   updateNote: () => {}
 }
-
+//TODO: More tests
 it('renders without crashing', () => {
   const div = document.createElement('div')
   ReactDOM.render(<List {...defaultProps} />, div)
