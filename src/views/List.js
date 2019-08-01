@@ -16,7 +16,7 @@ const ListWrapper = styled.div`
   align-items: center;
 `
 
-const List = props => {
+export const List = props => {
 
   const markAsFinished = note => {
     note.finished = !note.finished

@@ -35,7 +35,7 @@ const Button = styled.button`
   color: #FFFFFF;
 `
 
-class AddTodo extends React.Component {
+export class AddTodo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
