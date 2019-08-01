@@ -20,13 +20,13 @@ const Wrapper = styled.div`
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.0416667);
   margin: 9px;
   min-height: 50px;
-  border-left: 16px solid RGBA(${({priority}) => {
+  border-left: 16px solid rgba(${({priority}) => {
     if (priority === 'LOW') {
       return '235, 220, 35'
     } else if (priority === 'MEDIUM') {
       return '255, 150, 60'
     }
-    return '208, 2, 27'}}, 0.7);
+    return '208, 2, 27, 0.7'}});
 `
 
 const Input = styled.input`
